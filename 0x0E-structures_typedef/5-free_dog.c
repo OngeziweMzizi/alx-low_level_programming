@@ -1,19 +1,18 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include "dog.h"
-
 /**
- *free_dog - Frees a dog from memory
- *@d: Dog
- *Return: void
+ * free_dog - entry point
+ * @d: size of triangle
+ * Description: --
+ * Return: --
  */
 void free_dog(dog_t *d)
 {
-	if (d)
+	if (d != NULL)
 	{
-		if (d->name)
-			free(d->name);
-		if (d->owner)
-			free(d->owner);
+		free(d->owner);
+		free(d->name);
 		free(d);
 	}
 }
