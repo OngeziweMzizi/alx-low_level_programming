@@ -1,7 +1,6 @@
-#include "function_pointers.h"
-#include <stdlib.h>
 #include "3-calc.h"
 #include <stdio.h>
+#include <stdlib.h>
 
 /**
  * main - program that perfroms simple operations
@@ -27,12 +26,6 @@ int main(int argc, char *argv[])
 
 	func = get_op_func(argv[2]);
 
-	if ((o == '/' || o == '%') && arg2 == 0)
-	{
-		printf("Error\n");
-		exit(100);
-	}
-
 	if (!func)
 	{
 		printf("Error\n");
@@ -40,6 +33,12 @@ int main(int argc, char *argv[])
 	}
 
 	o = *argv[2];
+
+	if ((o == '/' || o == '%') && arg2 == 0)
+	{
+		printf("Error\n");
+		exit(100);
+	}
 
 	result = func(arg1, arg2);
 
