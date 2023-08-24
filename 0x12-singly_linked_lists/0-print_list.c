@@ -1,23 +1,23 @@
-#include "lists.h"
+#include <string.h>
 #include <stdio.h>
+#include <stdlib.h>
+#include "lists.h"
 
 /**
- * print_list - print all members of the lsit
- * @h: poionts to node
- * Return: number of nodes
+ * print_list - check the code for Holberton School students.
+ * @h: name of the list
+ * Return: the number of nodes.
  */
-size_t print_list(const list_t *h)
+
+size_t print_listint(const listint_t *h)
 {
-	size_t i = 0;
+	size_t count = 0;
 
 	while (h != NULL)
 	{
-		if (h->str == NULL)
-			printf("[0] (nil)\n");
-		else
-			printf("[%u] %s\n", h->len, h->str);
-		i++;
+		printf("%d\n", h->n);
 		h = h->next;
+		count++;
 	}
-	return (i);
+	return (count);
 }
