@@ -9,7 +9,7 @@
  * Return: the pointer to the new node otherwise, NULL
  */
 
-list_t *add_node(list_t **head, const char *str)
+list_t *add_node(listint_t **head, const char *str)
 
 {
 
