@@ -3,31 +3,30 @@
 #include "main.h"
 
 /**
- * create_file - create a file with read/write access for user
- * @filename: name of file to create
- * @text_content: string to write to file
- * Return: 1 on success, -1 on failure
+ * read_textfile-  reads a text file and prints it to the POSIX standard output
+ * @filename: this will be the text file to be read
+ * @letters: is the number of letters it should read and print
+ *
+ * Return: the actual number of letters it could read and print,
+ * if the file can not be opened or read, return 0,
+ * if filename is NULL return 0,
+ * if write fails or does not write the expected amount of bytes, return 0
  */
-int create_file(const char *filename, char *text_content)
+ssize_t read_textfile(const char *filename, size_t letters)
 {
-	int fd, rstatus, i;
+	char *buf;
+	ssize_t fd;
+	ssize_t w;
+	ssize_t t;
 
-	if (filename == NULL)
-		return (-1);
-
-	fd = open(filename, O_CREAT | O_WRONLY | O_TRUNC, S_IRUSR | S_IWUSR);
+	fd = open(filename, O_RDONLY);
 	if (fd == -1)
-		return (-1);
+		return (0);
+	buf = malloc(sizeof(char) * letters);
+	t = read(fd, buf, letters);
+	w = write(STDOUT_FILENO, buf, t);
 
-	if (text_content)
-	{
-		for (i = 0; text_content[i] != '\0'; i++)
-			;
-		rstatus = write(fd, text_content, i);
-		if (rstatus == -1)
-			return (-1);
-	}
-
+	free(buf);
 	close(fd);
-	return (1);
+	return (w);
 }
